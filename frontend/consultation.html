@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Virtual Consultations</title>
+    <link rel="stylesheet" href="consultation.css" />
+  </head>
+  <body
+    style="
+      background-image: url('/images/ai\ doctor.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    "
+  >
+    <h1>Virtual Consultations</h1>
+    <form
+      id="consultationForm"
+      style="
+        background: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+        width: 100%;
+        max-width: 500px;
+      "
+    >
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" required />
+      <label for="contactNumber">Contact Number:</label>
+      <input type="text" id="contactNumber" name="contactNumber" required />
+      <label for="village">Village:</label>
+      <input type="text" id="village" name="village" required />
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+      <label for="issue">Describe Your Issue:</label>
+      <textarea
+        id="issue"
+        name="issue"
+        rows="4"
+        placeholder="Describe your issue here..."
+        required
+      ></textarea>
+      <button type="submit">Request Consultation</button>
+    </form>
+
+    <script>
+      // Handle form submission
+      document
+        .getElementById("consultationForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent default form submission
+
+          // Get form data
+          const formData = {
+            firstName: document.getElementById("firstName").value,
+            contactNumber: document.getElementById("contactNumber").value,
+            village: document.getElementById("village").value,
+            email: document.getElementById("email").value,
+            issue: document.getElementById("issue").value,
+          };
+
+          // Store form data in localStorage
+          localStorage.setItem("consultationData", JSON.stringify(formData));
+
+          // Redirect to the result page
+          window.location.href = "result.html";
+        });
+    </script>
+  </body>
+</html>

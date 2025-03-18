@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consultation Result</title>
+    <link rel="stylesheet" href="consultation.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-image: url("C:/hackthon/images/heart.jpg");
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: "Poppins", sans-serif;
+        color: #ffffff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: #ff6f61; /* Coral color for the heading */
+      }
+
+      #resultDisplay {
+        background: rgba(
+          255,
+          255,
+          255,
+          0.9
+        ); /* Light background for the result */
+        padding: 25px;
+        border-radius: 15px;
+        width: 100%;
+        max-width: 500px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        color: #333333; /* Dark gray for text */
+      }
+
+      #resultDisplay p {
+        margin: 10px 0;
+        font-size: 1rem;
+      }
+
+      .thank-you-message {
+        background: rgba(
+          255,
+          255,
+          255,
+          0.9
+        ); /* Light background for the message */
+        padding: 20px;
+        border-radius: 15px;
+        width: 100%;
+        max-width: 500px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        margin-top: 20px;
+        text-align: center;
+        color: #333333; /* Dark gray for text */
+      }
+
+      .thank-you-message p {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #ff6f61; /* Coral color for the message */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Consultation Result</h1>
+    <div id="resultDisplay">
+      <!-- Result will be displayed here -->
+    </div>
+
+    <div class="thank-you-message">
+      <p>Thank you for consulting Us..!</p>
+      <p>Have a Speed Recovery</p>
+    </div>
+
+    <script>
+      // Retrieve form data from localStorage
+      const formData = JSON.parse(localStorage.getItem("consultationData"));
+
+      // Display the result
+      if (formData) {
+        const resultDisplay = document.getElementById("resultDisplay");
+        resultDisplay.innerHTML = `
+          <p><strong>First Name:</strong> ${formData.firstName}</p>
+          <p><strong>Contact Number:</strong> ${formData.contactNumber}</p>
+          <p><strong>Village:</strong> ${formData.village}</p>
+          <p><strong>Email:</strong> ${formData.email}</p>
+          <p><strong>Issue:</strong> ${formData.issue}</p>
+        `;
+      } else {
+        // If no data is found, show an error message
+        resultDisplay.innerHTML = "<p>No consultation data found.</p>";
+      }
+    </script>
+  </body>
+</html>

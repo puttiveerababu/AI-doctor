@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medicine Recommendations</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        color: white;
+        background-image: url("/images/doctor.jpg");
+        background-size: cover;
+        background-position: center;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+      }
+
+      form {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 400px;
+      }
+
+      label {
+        font-size: 1.2rem;
+        color: #333;
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 1rem;
+        background-color: #ff6f61;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #ff4a3d;
+      }
+
+      #medicineResult {
+        margin-top: 20px;
+        font-size: 1.2rem;
+        color: #d81414;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Medicine Recommendations</h1>
+    <form id="medicineForm">
+      <label for="disease">Enter Disease:</label>
+      <input
+        type="text"
+        id="disease"
+        name="disease"
+        placeholder="e.g., High Blood Pressure, Diabetes"
+        required
+      />
+      <button type="submit">Get Recommendations</button>
+    </form>
+    <div id="medicineResult"></div>
+
+    <script>
+      // JavaScript to handle form submission and recommend medicine
+      document
+        .getElementById("medicineForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent form from submitting
+
+          // Get the disease input
+          const disease = document
+            .getElementById("disease")
+            .value.trim()
+            .toLowerCase();
+
+          // Define a medicine recommendation mapping
+          const medicineRecommendations = {
+            "high blood pressure": ["Amlodipine", "Lisinopril", "Metoprolol"],
+            diabetes: ["Metformin", "Insulin", "Glipizide"],
+            headache: ["Paracetamol", "Ibuprofen", "Aspirin"],
+            fever: ["Paracetamol", "Ibuprofen", "Acetaminophen"],
+            cold: ["Cetirizine", "Loratadine", "Pseudoephedrine"],
+            flu: ["Oseltamivir", "Zanamivir", "Paracetamol"],
+          };
+
+          // Find the medicine for the entered disease
+          const medicines = medicineRecommendations[disease];
+
+          // Display the result
+          const resultDiv = document.getElementById("medicineResult");
+          if (medicines) {
+            resultDiv.innerHTML = `<strong>Recommended Medicines for ${disease}:</strong> ${medicines.join(
+              ", "
+            )}`;
+          } else {
+            resultDiv.innerHTML = "No recommendations found for this disease.";
+          }
+        });
+    </script>
+  </body>
+</html>
